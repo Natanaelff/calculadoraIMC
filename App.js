@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity, Animated } from 'react-native';
 import Constants from 'expo-constants';
 
  
@@ -53,8 +53,10 @@ export default class App extends React.Component {
           this.setState({
             legenda: "Obesidade grau III",
             cor: '#c0392b',
-          })
+          });
         }
+
+        
 
     }
 
@@ -71,11 +73,10 @@ export default class App extends React.Component {
               <Text style={styles.diagnostico}>{this.state.legenda}</Text>
           </View>
 
-          <View style={{marginVertical: 30}}>
-              <Text style={styles.text}>PESO</Text>
+          <View style={styles.containerInput}>
               <TextInput 
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginVertical: 15, borderRadius: 10 }}
-              label= "PESO"
+              placeholder= "PESO"
+              style={styles.input}
               keyboardType= "phone-pad"
               onChangeText= {valor => {
                 this.setState({
@@ -84,9 +85,10 @@ export default class App extends React.Component {
               }}
                 
               />
-                <Text style={styles.text}>ALTURA</Text>
+              
               <TextInput
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginVertical: 15, borderRadius: 10 }}
+                placeholder= "ALTURA"
+                style={styles.input}
                 keyboardType= "phone-pad"
                 onChangeText= {valor => {
                   this.setState({
@@ -95,9 +97,12 @@ export default class App extends React.Component {
                 }}
               />
           </View>
+          
 
           <View>
-            <Button onPress={this.calcularIMC} title='Calcular' />
+            <TouchableOpacity style={styles.btnButton} onPress={this.calcularIMC}>
+              <Text style={styles.btnText}>Calcular</Text>
+            </TouchableOpacity>
           </View>
           
           <View>
@@ -115,6 +120,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    flex: 1,
+    backgroundColor: '#F7F2E0'
   },
 
   legenda: {
@@ -148,22 +155,51 @@ const styles = StyleSheet.create({
     padding: 8,
     alignSelf: 'center',
 },
-  text: {
-    fontSize: 12,
-    fontWeight: 'bold',
+  
+  img: {
+    height: 100,
+    width: 100,
+    alignSelf: "center",
 },
 
-img: {
-  height: 100,
-  width: 100,
-  alignSelf: "center",
-},
-
-imgs: {
+  imgs: {
       height: 350,
       width: 350,
-      marginVertical: -20,
+      marginVertical: 25,
+},
+
+  containerInput: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      marginVertical: 10,
+
+},
+  input: {
+      backgroundColor: '#fff',
+      width: '90%',
+      marginBottom: 15,
+      color: '#222',
+      fontSize: 17,
+      borderRadius: 7,
+      padding: 10,
+
   },
+
+    btnButton: {
+      backgroundColor: '#35aaff',
+      width: '100%',
+      height: 45,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 7,
+
+},
+
+    btnText: {
+      color: '#fff',
+      fontSize: 18,
+},
 
 
 });
