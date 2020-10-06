@@ -100,6 +100,10 @@ export default class App extends React.Component {
             <Button onPress={this.calcularIMC} title='Calcular' />
           </View>
           
+          <View>
+            <Image style={styles.imgs} source={require('./assets/calculo.png')}></Image>
+          </View>
+          
       </View>
     );
   }
@@ -154,6 +158,12 @@ img: {
   width: 100,
   alignSelf: "center",
 },
+
+imgs: {
+      height: 350,
+      width: 350,
+      marginVertical: -20,
+  },
 
 
 });
